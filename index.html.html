@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Noi Due, Anche Se Lontani ❤️</title>
+  <style>
+    :root {
+      --bg1: #ff9a9e;
+      --bg2: #fecfef;
+      --text: #333;
+      --card-bg: rgba(255, 255, 255, 0.9);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, var(--bg1), var(--bg2));
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: var(--text);
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 800px;
+      width: 100%;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border-radius: 20px;
+      padding: 40px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+      text-align: center;
+      backdrop-filter: blur(10px);
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+      color: #e91e63;
+    }
+
+    p {
+      font-size: 1.2rem;
+      line-height: 1.6;
+      margin-bottom: 25px;
+    }
+
+    .heart {
+      font-size: 4rem;
+      animation: beat 1s infinite;
+      display: inline-block;
+      margin: 20px 0;
+    }
+
+    @keyframes beat {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.2); }
+    }
+
+    .counter {
+      background: #fff;
+      border-radius: 15px;
+      padding: 20px;
+      margin: 30px 0;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+    }
+
+    .counter h2 {
+      color: #e91e63;
+      margin-bottom: 15px;
+    }
+
+    .timer {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #333;
+    }
+
+    .message-box {
+      background: #fff;
+      border-radius: 15px;
+      padding: 25px;
+      margin-top: 30px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+    }
+
+    .message-box h2 {
+      color: #e91e63;
+      margin-bottom: 15px;
+    }
+
+    .message-box textarea {
+      width: 100%;
+      min-height: 120px;
+      padding: 15px;
+      border: 2px solid #ffc1e3;
+      border-radius: 10px;
+      font-size: 1rem;
+      resize: vertical;
+      margin-bottom: 15px;
+    }
+
+    .message-box button {
+      background: #e91e63;
+      color: white;
+      border: none;
+      padding: 12px 30px;
+      font-size: 1.1rem;
+      border-radius: 25px;
+      cursor: pointer;
+      transition: transform 0.2s, background 0.2s;
+    }
+
+    .message-box button:hover {
+      background: #c2185b;
+      transform: scale(1.05);
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 15px;
+      margin-top: 30px;
+    }
+
+    .gallery-item {
+      background: #fff;
+      border-radius: 15px;
+      padding: 15px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+      transition: transform 0.3s;
+    }
+
+    .gallery-item:hover {
+      transform: translateY(-5px);
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 10px;
+    }
+
+    .gallery-item p {
+      margin-top: 10px;
+      font-size: 0.9rem;
+      color: #666;
+    }
+
+    .footer {
+      margin-top: 40px;
+      font-size: 0.9rem;
+      color: #666;
+    }
+
+    @media (max-width: 600px) {
+      h1 { font-size: 2rem; }
+      p { font-size: 1rem; }
+      .heart { font-size: 3rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="card">
+      <h1>Noi Due, Anche Se Lontani ❤️</h1>
+      <p>
+        La distanza separa i corpi, non i cuori. Ogni giorno che passa è un giorno in meno che ci separa dal prossimo abbraccio.
+      </p>
+
+      <div class="heart">❤️</div>
+
+      <div class="counter">
+        <h2>⏳ Tempo insieme (o fino al prossimo incontro)</h2>
+        <p>Modifica la data nel codice per personalizzare il countdown!</p>
+        <div class="timer" id="timer">Caricamento...</div>
+      </div>
+
+      <div class="message-box">
+        <h2>💌 Lascia un messaggio d'amore</h2>
+        <textarea id="loveMessage" placeholder="Scrivi qui qualcosa di speciale per lei..."></textarea>
+        <button onclick="saveMessage()">Salva Messaggio</button>
+        <p id="saveStatus" style="margin-top: 10px; color: #4caf50; display: none;">Messaggio salvato! 💕</p>
+      </div>
+
+      <div class="gallery">
+        <div class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1518199266791-5375a83190b7?w=400" alt="Foto 1">
+          <p>Il nostro primo incontro</p>
+        </div>
+        <div class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1529333166437-7750a6dd5a70?w=400" alt="Foto 2">
+          <p>Una risata insieme</p>
+        </div>
+        <div class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?w=400" alt="Foto 3">
+          <p>Un momento speciale</p>
+        </div>
+      </div>
+
+      <div class="footer">
+        <p>Fatto con ❤️ per voi due</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Imposta la data di inizio della vostra storia o del prossimo incontro
+    const startDate = new Date('2024-01-01T00:00:00'); // MODIFICA QUESTA DATA!
+
+    function updateTimer() {
+      const now = new Date();
+      const diff = now - startDate;
+
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+      document.getElementById('timer').textContent = 
+        `${days} giorni, ${hours} ore, ${minutes} minuti, ${seconds} secondi`;
+    }
+
+    setInterval(updateTimer, 1000);
+    updateTimer();
+
+    function saveMessage() {
+      const message = document.getElementById('loveMessage').value;
+      if (message.trim()) {
+        localStorage.setItem('loveMessage', message);
+        document.getElementById('saveStatus').style.display = 'block';
+        setTimeout(() => {
+          document.getElementById('saveStatus').style.display = 'none';
+        }, 3000);
+      }
+    }
+
+    // Carica il messaggio salvato
+    window.onload = function() {
+      const savedMessage = localStorage.getItem('loveMessage');
+      if (savedMessage) {
+        document.getElementById('loveMessage').value = savedMessage;
+      }
+    };
+  </script>
+</body>
+</html>
